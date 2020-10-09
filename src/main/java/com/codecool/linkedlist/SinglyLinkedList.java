@@ -1,6 +1,8 @@
 package com.codecool.linkedlist;
 
-public class SinglyLinkedList {
+import java.util.LinkedList;
+
+public class SinglyLinkedList extends LinkedList {
 
     private class Link {
 
@@ -37,6 +39,13 @@ public class SinglyLinkedList {
      * @param value value to be appended
      */
     public void add(int value) {
+        Link temp = new Link(value);
+        if (this.size() == 0){
+//            this.size() = 1;
+            this.head = temp;
+        } else {
+            this.add(-1, value);
+        }
     }
 
     /**
@@ -45,8 +54,10 @@ public class SinglyLinkedList {
      * @param index the position of requested value
      * @return value of element at index
      */
-    public int get(int index) {
-        return 0;
+    public Object get(int index) {
+        Link temp;
+        temp = (Link) this.get(index);
+        return temp.getValue();
     }
 
     /**
@@ -56,7 +67,14 @@ public class SinglyLinkedList {
      * @return Index of 'number' if it's in the list, otherwise -1;
      */
     public int indexOf(int number) {
-        return 0;
+        Link count;
+        for (int i = 0; i < this.size(); i++) {
+            count = (Link) this.get(i);
+            if (count.getValue() == number){
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -66,6 +84,8 @@ public class SinglyLinkedList {
      * @param number Value to be inserted.
      */
     public void insert(int index, int number) {
+        Link temp = new Link(number);
+        this.add(index, temp);
     }
 
     /**
@@ -74,22 +94,27 @@ public class SinglyLinkedList {
      * @return Size of list.
      */
     public int size() {
-        return 0;
+        if (this.size() == 0){
+            return 0;
+        } else {
+            return this.size();
+        }
     }
 
     /**
      * Removes the element at 'index' from the array.
      *
      * @param index Position of value to be deleted.
+     * @return
      */
-    public void remove(int index) {
+    public Object remove(int index) {
         if (index == 0) {
             if (head == null) {
                 throw new IndexOutOfBoundsException();
             } else {
                 head = head.getNext();
             }
-            return;
+            return null;
         }
         Link elementBeforeIndex = head;
         while (index - 1 > 0) {
@@ -104,5 +129,6 @@ public class SinglyLinkedList {
             throw new IndexOutOfBoundsException();
         }
         elementBeforeIndex.setNext(elementAtIndex.getNext());
+        return null;
     }
 }
