@@ -77,4 +77,5 @@ public class Main {
         System.out.format("%s insert <index to insert at> <number to insert>\n", runPrefix);
         System.out.format("%s delete <index to delete at>\n", runPrefix);
     }
+
 }
